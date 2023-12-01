@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+    <div class="d-flex justify-content-center align-items-center m-5 col-12" style="background-color: #322E2B;">
+      <div class="d-flex justify-content-between align-items-center flex-column col-6 p-5 text-white">
+            <div class="d-flex justify-content-center align-items-center flex-column p-5">
+                  <p>ABOUT US</p>
+                  <h3>Farm-to-Fork</h3>
+                  <h3>Restaurant</h3>
+            </div>
+            <div class="p-3 d-flex justify-content-center align-items-center flex-column">
+                  <p >Emphasizes the direct sourcing of food from local farms to ensure freshness and support sustainable, locally-driven agriculture. Quality is our first choice.</p>
+            </div>
+      </div>
+      <div class="col-6">
+            <img class="img-fluid" src="{% static 'my_photo.png' %}" alt="showing chef">
+      </div>
+    </div>
+{% endblock %}
