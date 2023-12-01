@@ -1,6 +1,21 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>This is show item page</h1>
-{% endblock content %}
+<h2>Our latest items</h2>
+<div class="d-flex flex-wrap justify-content-around align-items-center gap-3 py-5">
+      {% for category in categories %}
+      <div class="card" style="width: 18rem;">
+            <img src="{{category.strCategoryThumb}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                  <h5>id: {{category.idCategory | title}}</h5>
+                  <h4>{{category.strCategory | title}}</h4>
+                  <p class="card-text">{{category.strCategoryDescription | truncatewords:10}}</p>
+                  <div class="d-flex justify-content-around align-items-center">
+                        <a href="{% url 'order' category.idCategory %}" class="btn btn-primary">Order Now</a>
+                  </div>
+            </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
 
