@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'category',
     'task',
     'show_task',
-    
 ]
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"

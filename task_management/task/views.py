@@ -31,7 +31,7 @@ def delete_task(request, id):
       return redirect('show_task')
 
 
-def completed(request, id):
+def checked(request, id):
       task = models.TaskModel.objects.get(pk = id)
       task.is_completed = not task.is_completed
       task.save()
