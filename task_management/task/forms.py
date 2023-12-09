@@ -1,6 +1,7 @@
 from django import forms
+from django.core import validators
 from . import models
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 
@@ -18,5 +19,9 @@ class TaskForm(forms.ModelForm):
             
             widgets = {
                   'taskDescription': forms.Textarea(attrs ={'rows': 5}),
-                  'task_assign_date': forms.DateInput(attrs = {'type': 'date'}),
+                  'task_assign_date': forms.DateInput(attrs = {'type': 'date', 'min': (datetime.now().date() - timedelta(days = 0)).strftime('%Y-%m-%d')}),
+            }
+            
+            validators = {
+                  'task_assign_date': [validators.MinValueValidator(datetime.now().date())],
             }

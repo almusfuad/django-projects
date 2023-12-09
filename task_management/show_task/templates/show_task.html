@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row row-cols-1 row-cols-md-4 g-4">      
+      {% for task in tasks %}
+          <div class="col-md-3 ">
+              <div class="card h-100 bg-light">
+                  <div class="card-body d-flex flex-column">
+                      <div class="d-flex justify-content-between align-items-center mb-2 border-bottom">
+                          <h5 class="card-title pb-1">{{task.taskTitle}}</h5>
+                          <input type="checkbox" aria-label="Checkbox for following text input" id="taskCheckbox{{ task.id }}" {% if task.is_completed %}checked{% endif %} onchange="updateIsCompleted(this)">
+                          <form id="taskForm{{ task.id }}" method="post" action="{% url 'completed' task.id %}" style="display: none;">
+                              {% csrf_token %}
+                              <input type="hidden" name="is_completed" value="{{ task.is_completed }}">
+                          </form>
+                      </div>
+                      <div class="down-portion flex-grow-1">
+                          <p class="card-text">Task to complete: {{ task.task_assign_date | date:"d-M-Y" }}</p>
+                          <p class="card-text" style="font-weight: 500; font-size: 1.1em;">{{ task.taskDescription }}</p>
+                      </div>
+                      <div class="d-flex flex-row justify-content-start align-items-center">
+                        <p class="card-text">
+                              {% for category in task.categories.all %}
+                                    <span class="badge rounded-pill bg-info">{{ category.category_name }}</span>
+                              {% endfor %}
+                          </p>
+                      </div>
+                          {% if task.is_completed %}
+                              <a href="{% url 'delete_task' task.id %}" class="btn btn-success mt-2">Completed</a>
+                          {% else %}
+                              <div class="buttons mt-2 d-flex justify-content-between">
+                                    <a href="{% url 'edit_task' task.id %}" class="btn btn-warning">Edit</a>
+                                    <a href="{% url 'delete_task' task.id %}" class="btn btn-danger">Delete</a>
+                              </div>
+                          {% endif %}
+                      
+                  </div>
+              </div>
+          </div>     
+      {% endfor %}
+  </div>
+{% endblock %}
+
+{% block script %}
+<script>
+      function updateIsCompleted(checkbox){
+            const taskId = checkbox.id.replace('taskCheckbox', '');
+            console.log(taskId);
+            const form = document.getElementById(`taskForm${taskId}`);
+            const icCompletedInput = form.querySelector("input[name = is_completed]");
+
+            icCompletedInput.value = checkbox.checked ? 'True' : 'False';
+            form.submit();
+      } 
+      
+</script>
+{% endblock %}
