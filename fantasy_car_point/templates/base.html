@@ -24,9 +24,11 @@
                 </ul>
                 <div class="d-flex">
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                              <a class="nav-link" href="#">Login</a>
-                              <a class="nav-link" href="#">Registration</a>
+                        <li class="nav-item mx-2">
+                              <a class="nav-link btn text-bg-info" href="{% url 'login' %}">Login</a>
+                        </li>
+                        <li class="nav-item mx-2">
+                              <a class="nav-link btn text-bg-warning" href="{% url 'register' %}">Registration</a>
                         </li>
                   </ul>
                 </div>
