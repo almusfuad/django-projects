@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block body %}
+{% if messages %}
+<div class="alert alert-info">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+</div>
+{% endif %}
+
+<div class="d-flex p-3">
+      <div class="col-3 d-flex flex-column align-items-start px-3 pt-5 pb-3">
+            <a class="btn btn-secondary mb-2" href="{% url 'update_profile' %}">Edit Profile</a>
+            <a class="btn btn-secondary mb-2" href="{% url 'update_password' %}">Update Password</a>
+      </div>
+      <div class="col-9">
+            <h1 class="mb-3">{{user.username}} Profile</h1>
+            <p>Name: {{user.first_name}} {{user.last_name}}</p>
+            <p>Email: {{user.email}}</p>
+      </div>
+</div>
+{% endblock %}
