@@ -11,19 +11,19 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 
 
 # Create your views here.
-class UserRegistration(CreateView):
+class UserSignup(CreateView):
       form_class = UserCreationForm
       template_name = 'authentication.html'
       success_url = reverse_lazy('login')
       
       def form_valid(self, form):
             response = super().form_valid(form)
-            messages.success(self.request, 'Registration Successful')
+            messages.success(self.request, 'Signup Successful')
             return response
       
       def get_context_data(self, **kwargs):
             context = super().get_context_data(**kwargs)
-            context['type'] = 'Register'
+            context['type'] = 'Signup'
             return context
 
 

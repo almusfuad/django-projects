@@ -9,14 +9,18 @@
 {% endif %}
 
 <div class="d-flex p-3">
-      <div class="col-3 d-flex flex-column align-items-start px-3 pt-5 pb-3">
+      <div class="col-2 d-flex flex-column align-items-start px-3 pt-5 pb-3 border-end" style="height: 100vh;">
             <a class="btn btn-secondary mb-2" href="{% url 'update_profile' %}">Edit Profile</a>
             <a class="btn btn-secondary mb-2" href="{% url 'update_password' %}">Update Password</a>
       </div>
-      <div class="col-9">
+      <div class="col-10 ps-4 pe-2">
             <h1 class="mb-3">{{user.username}} Profile</h1>
+            {% if user.email %}
             <p>Name: {{user.first_name}} {{user.last_name}}</p>
             <p>Email: {{user.email}}</p>
+            {% else %}
+            <p>No data to show. Please <a href="{% url 'update_profile' %}">update information</a></p>
+            {% endif %}
       </div>
 </div>
 {% endblock %}
