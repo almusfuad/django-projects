@@ -9,6 +9,15 @@ class HomePageView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['models'] = CarModel.objects.all()
-        print(context)
+        context['brands'] = Brand.objects.all()
+        
+        
+        brand_name = self.kwargs.get('brand_name')
+        if brand_name is not None:
+            context['models'] = CarModel.objects.filter(brand__brand_name = brand_name)
+        else:
+            context['models'] = CarModel.objects.all()
+            
+            
         return context
+
