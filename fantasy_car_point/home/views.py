@@ -25,3 +25,9 @@ class DetailPageView(DetailView):
     model = CarModel
     template_name = 'details.html'
     slug_url_kwarg = 'slug'
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['detail'] = self.object
+        
+        return context
