@@ -20,8 +20,12 @@ class CarModel(models.Model):
       color = models.CharField(max_length = 20, blank=True)
       car_details = models.TextField()
       price = models.FloatField()
-      image = models.ImageField(upload_to = car_image_upload, blank = False, null = False,)
+      quantity = models.IntegerField(null = True, blank = True)
+      image = models.ImageField(upload_to = car_image_upload, blank = False, null = False)
       slug = models.SlugField(max_length = 255, unique = True, null = True, blank = True)
+      
+      def generate_product_name(self):
+            return f'{self.brand.brand_name} {self.model_name} {self.model_year} {self.color}'
       
       def save(self, *args, **kwargs):
             if not self.slug:

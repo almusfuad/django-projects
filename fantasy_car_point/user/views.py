@@ -10,6 +10,7 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
 
 
 
+
 # Create your views here.
 class UserSignup(CreateView):
       form_class = UserCreationForm
@@ -103,3 +104,22 @@ class UserPasswordChange(PasswordChangeView):
             context['type'] = 'Password'
             return context
       
+
+def purchase_car(request, pk):
+      car_model = CarModel.objects.get(pk = pk)
+      
+      if car_model.quantity > 0:
+            models.Purchase.objects.create(
+                  user = request.user,
+                  product = car_model,
+                  quantity = 1,
+                  total_price = car_model.price
+            )
+            car_model.quantity -= 1
+            car_model.save()
+            
+            messages.success(request, 'Car purchased successfully!')
+      else:
+            messages.error(request, 'Sorry, this car is out of stock.')
+      
+      return redirect('car_details', pk = pk)
