@@ -29,45 +29,24 @@
       </div>
       <div class="col-10">
             <div class="row row-cols-1 row-cols-md-3 g-4">
+                  {% for model in models %}
                   <div class="col-3">
                         <div class="card h-100">
-                              <img src="..." class="card-img-top" alt="...">
+                              <img src="{{ model.image.url }}" class="card-img-top"
+                                    alt="{{ model.model_name }} {{model.model_year}}">
                               <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                          lead-in to additional content. This content is a little bit longer.</p>
+                                    <h5 class="card-title">{{ model.title }}</h5>
+                                    <p class="card-text">Price: ${{ model.price }}</p>
+                                    <p class="card-text">{{ model.car_details }}</p>
                               </div>
+                              {% if user.is_authenticated %}
                               <div class="card-footer">
-                                    <small class="text-body-secondary">Last updated 3 mins ago</small>
+                                    <button class="btn btn-primary">Buy Now</button>
                               </div>
+                              {% endif %}
                         </div>
                   </div>
-                  <div class="col-3">
-                        <div class="card h-100">
-                              <img src="..." class="card-img-top" alt="...">
-                              <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This card has supporting text below as a natural lead-in to
-                                          additional content.</p>
-                              </div>
-                              <div class="card-footer">
-                                    <small class="text-body-secondary">Last updated 3 mins ago</small>
-                              </div>
-                        </div>
-                  </div>
-                  <div class="col-3">
-                        <div class="card h-100">
-                              <img src="..." class="card-img-top" alt="...">
-                              <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is a wider card with supporting text below as a natural
-                                          lead-in to additional content. </p>
-                              </div>
-                              <div class="card-footer">
-                                    <small class="text-body-secondary">Last updated 3 mins ago</small>
-                              </div>
-                        </div>
-                  </div>
+                  {% endfor %}
             </div>
       </div>
 </div>

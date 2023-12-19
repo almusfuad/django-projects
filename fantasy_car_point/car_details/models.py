@@ -10,7 +10,7 @@ class Brand(models.Model):
             return self.brand_name
 
 def car_image_upload(instance, filename):
-      return f'car_details/media/uploads/{instance.brand.brand_name}_{instance.model_name}/{filename}'
+      return f'car_details/media/uploads/{instance.brand.brand_name}/{filename}'
 
 
 class CarModel(models.Model):
