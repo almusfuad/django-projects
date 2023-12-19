@@ -28,25 +28,33 @@
             <ul style="list-style-type: none;">
                   <h6 class="text-decoration-underline">Browse by brands: </h6>
                   {% for brand in brands %}
-                        <a href="{% url 'filter_by_brand' brand.brand_name %}" class="text-decoration-none"><li >{{ brand.brand_name }}</li></a>
+                  <a href="{% url 'filter_by_brand' brand.brand_name %}" class="text-decoration-none">
+                        <li>{{ brand.brand_name }}</li>
+                  </a>
                   {% endfor %}
+                  <a href="{% url 'home' %}" class="text-decoration-none">
+                        <li>All</li>
+                  </a>
             </ul>
       </div>
       <div class="col-10">
+            <h3>Total number of cars: {{models | length}}</h3>
             <div class="row row-cols-1 row-cols-md-3 g-4">
                   {% for model in models %}
                   <div class="col-3">
                         <div class="card h-100">
                               <img src="{{ model.image.url }}" class="card-img-top img-fluid"
-                                    alt="{{ model.model_name }} {{model.model_year}}" style="height: 150px;"> 
+                                    alt="{{ model.model_name }} {{model.model_year}}" style="height: 150px;">
                               <div class="card-body">
-                                    <h5 class="card-title">{{ model.title }}</h5>
+                                    <a href="{% url 'car_details' model.slug %}" class="text-decoration-none">
+                                          <h5 class="card-title text-dark">{{ model.brand.brand_name }} {{model.model_name}} {{model.model_year}} {{model.color}}</h5>
+                                    </a>
                                     <p class="card-text">Price: ${{ model.price }}</p>
                                     <p class="card-text">{{ model.car_details| truncatewords:15}}</p>
                               </div>
                               {% if user.is_authenticated %}
                               <div class="card-footer">
-                                    <button class="btn btn-primary w-100">Buy Now</button>
+                                    <a href="#" class="btn btn-primary w-100">Buy Now</a>
                               </div>
                               {% endif %}
                         </div>
