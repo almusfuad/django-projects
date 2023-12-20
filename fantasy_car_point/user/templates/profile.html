@@ -21,6 +21,34 @@
             {% else %}
             <p>No data to show. Please <a href="{% url 'update_profile' %}">update information</a></p>
             {% endif %}
+            <br><br>
+            <h2>Purchase History: </h2>
+            <div class="card m-2">
+                  {% if purchase_history %}
+                  <table class="table">
+                        <thead>
+                          <tr>
+                            <!-- <th scope="col">SL NO</th> -->
+                            <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                              {% for list in purchase_history %}
+                          <tr>
+                            <!-- <th scope="row">{{list.id}}</th> -->
+                            <td>{{list.product}}</td>
+                            <td>{{list.quantity}}</td>
+                            <td>{{list.total_price}}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                  {% else %}
+                      <h6>No purchase history available.</h6>
+                  {% endif %}
+              </div>
       </div>
 </div>
 {% endblock %}

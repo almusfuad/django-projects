@@ -6,6 +6,7 @@ from django.views.generic import CreateView, DetailView, UpdateView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from purchase.models import Purchase
 
 
 
@@ -63,6 +64,14 @@ class UserProfileDetails(DetailView):
       
       def get_object(self, queryset = None):
             return self.request.user
+      
+      def get_context_data(self, **kwargs):
+            context = super().get_context_data(**kwargs)
+        
+            purchase_history = Purchase.objects.filter(user=self.request.user)
+            context['purchase_history'] = purchase_history
+            
+            return context
       
 class UserProfileUpdate(UpdateView):
       model = User
