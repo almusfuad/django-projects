@@ -54,7 +54,7 @@
                               </div>
                               {% if user.is_authenticated %}
                               <div class="card-footer">
-                                    <a href="#" class="btn btn-primary w-100">Buy Now</a>
+                                    <a href="{% url 'buy_now' pk=detail.pk %}" class="btn btn-primary w-100">Buy Now</a>
                               </div>
                               {% endif %}
                         </div>

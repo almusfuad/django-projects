@@ -101,7 +101,7 @@ class UserPasswordChange(PasswordChangeView):
       
       def form_valid(self, form):
             response = super().form_valid(form)
-            messages.success(self.request, 'Password changed successfully')
+            messages.success(self.request, 'Password updated successfully')
             return response
       
       def form_invalid(self, form):

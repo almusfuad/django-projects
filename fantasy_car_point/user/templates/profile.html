@@ -22,7 +22,7 @@
             <p>No data to show. Please <a href="{% url 'update_profile' %}">update information</a></p>
             {% endif %}
             <br><br>
-            <h2>Purchase History: </h2>
+            <h2>Bought Car List: </h2>
             <div class="card m-2">
                   {% if purchase_history %}
                   <table class="table">
@@ -30,7 +30,7 @@
                           <tr>
                             <!-- <th scope="col">SL NO</th> -->
                             <th scope="col">Product</th>
-                            <th scope="col">Quantity</th>
+                            <!-- <th scope="col">Quantity</th> -->
                             <th scope="col">Price</th>
                           </tr>
                         </thead>
@@ -39,7 +39,7 @@
                           <tr>
                             <!-- <th scope="row">{{list.id}}</th> -->
                             <td>{{list.product}}</td>
-                            <td>{{list.quantity}}</td>
+                            <!-- <td>{{list.quantity}}</td> -->
                             <td>{{list.total_price}}</td>
                           </tr>
                           {% endfor %}
